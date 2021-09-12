@@ -1,0 +1,40 @@
+{% extends "clothes/shabl.html" %}
+
+{% block content %}
+{% load static %}
+<body background="{% static 'photo/s1200.jpg' %}">
+<div class="section">
+<div class="conatiner">
+    <div class="row" >
+{% for tovar in tovars %}
+
+
+        <div class="col-lg-3" style="margin:20px auto 5px; ">
+            <div class="kirpichi">
+
+            <div class="card-body" >
+
+                <img src="{{tovar.image}}" width="100%" height="60%">
+                <p class="text-info1">{{tovar.product.name}} </p>
+              <p class="card-text">{{tovar.product.descrip|truncatechars_html:70}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group1">
+
+                  <input type="button" class="btn btn-success"  value="Глянуть поближе" onclick="location.href='{{tovar.id}}'" />
+
+                </div>
+
+              </div>
+            </div>
+    </div>
+</div>
+
+
+    {% endfor %}
+
+</div>
+  </div>
+    </div>
+
+
+{% endblock %}

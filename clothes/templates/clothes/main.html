@@ -1,0 +1,105 @@
+{% extends 'clothes/base1.html' %}
+
+{% block content %}
+{% load static %}
+<body background="{% static 'photo/s1200.jpg' %}">
+
+
+
+
+
+
+
+<div class="section">
+<div class="conatiner">
+    <div class="row" >
+{% for tovar in kir %}
+
+        <div class="col-lg-4" style="width:220%">
+            <div class="kirpichi">
+            <div class="card-body" >
+                {% if tovar.product.discount != 0 %}
+                                    <div class="alert alert-success" style="width:15 px; height=20 px; position:absolute;">
+  <font size="5" color="red" face="Arial">-{{tovar.product.discount}} %</font>
+</div>
+                {% endif %}
+                <a href="{{tovar.product.id }}">
+                    <img src="{{tovar.image}}" width="100%" height="60%"> </a>
+                <p class="text-info1">{{tovar.name}}  </p>
+                <p class="card-text">{{tovar.product.descrip|truncatechars_html:70}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+               <p><div class="btn-group1">
+
+                  <input type="button" class="btn btn-success"  value="Глянуть поближе" onclick="location.href='{{tovar.product.id}}'" />
+
+                </div>
+                  </p>
+
+              </div>
+            </div>
+    </div>
+</div>
+
+
+    {% endfor %}
+
+</div>
+  </div>
+    </div>
+
+
+
+
+<div class="section" style="margin-top:10px">
+
+<div class="conatiner">
+    <div class="row" >
+{% for tovar in kamen %}
+
+     <div class="col-lg-4" style="width:220%">
+            <div class="kirpichi">
+            <div class="card-body" >
+                {% if tovar.product.discount != 0 %}
+                                    <div class="alert alert-success" style="width:15 px; height=20 px; position:absolute;">
+  <font size="5" color="red" face="Arial">-{{tovar.product.discount}} %</font>
+</div>
+                {% endif %}
+                <a href="{{tovar.id }}">
+                    <img src="{{tovar.image}}" width="100%" height="60%"> </a>
+                <p class="text-info1">{{tovar.name}} </p>
+                <p class="card-text">{{tovar.product.descrip|truncatechars_html:70}}</p>
+              <div class="d-flex justify-content-between align-items-center">
+               <p> <div class="btn-group1">
+
+                  <input type="button" class="btn btn-success"  value="Глянуть поближе" onclick="location.href='{{tovar.id}}'" />
+
+                </div></p>
+
+              </div>
+            </div>
+    </div>
+</div>
+
+
+    {% endfor %}
+
+</div>
+  </div>
+    </div>
+ <br>
+<div id="cp_widget_84b2dee1-f1cb-4b96-8b97-b62c7bd355e3">...</div><script type="text/javascript">
+var cpo = []; cpo["_object"] ="cp_widget_84b2dee1-f1cb-4b96-8b97-b62c7bd355e3"; cpo["_fid"] = "AEFAmr-FXyl5";
+var _cpmp = _cpmp || []; _cpmp.push(cpo);
+(function() { var cp = document.createElement("script"); cp.type = "text/javascript";
+cp.async = true; cp.src = "//www.cincopa.com/media-platform/runtime/libasync.js";
+var c = document.getElementsByTagName("script")[0];
+c.parentNode.insertBefore(cp, c); })(); </script>
+
+{% load static %}
+<audio controls="controls" loop >
+<source src="{% static 'audio/11339.mp3' %}" type="audio/mp3">
+ <p>Ваш браузер не поддерживает аудио</p>
+ </audio>
+</body>
+{% endblock %}
+

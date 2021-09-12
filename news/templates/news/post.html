@@ -1,0 +1,7 @@
+{% extends "second/wrapper.html" %}
+
+{% block content %}
+<h2 class="text-info"> {{articles.title}}</h2>
+<h5 class="text-info"> Опубликовано:{{articles.date|date:"Y-m-d в H:i"}}</h5>
+<p>{{articles.post|safe|linebreaks}}</p>
+{% endblock %}

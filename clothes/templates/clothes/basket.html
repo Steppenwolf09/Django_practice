@@ -1,0 +1,33 @@
+
+{% block content %}
+
+{% load static %}
+<link href="{% static 'css/mystyle.css' %}" rel="stylesheet" >
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+
+<div class="basketcont ">
+<div>
+   <a href="{% url 'changing_basket' %}" > <img id="basketcontimg" src="{% static 'photo/basket.jpg' %}"  width="50" height="40" style=" margin-left:90%" alt="" loading="lazy">
+    <span id="kolvo_tovars_in_basket">({{kolvo_tov_in_bask}})</span></a></div>
+ <div class="basket-it d-none"  style=" margin-left:80%">
+  <form id="basket_form"  action="{% url 'remove_from_basket' %}"   style="    z-index: 20;
+    position: absolute; background-color: #e8e9ea;">
+      {% csrf_token %}
+    <ul>
+
+
+{% for tov in products_in_bask %}
+
+
+        <li class="libasket{{tov.tovar.id}}" style="width:300px">{{tov.tovar.name}} x {{tov.nmb}}  <br>{{ tov.total_price}} рубликов</li>
+            <button id="remove_from_baskbut" type="button" class="btn btn-outline-danger deltovbasket"  data-id={{tov.tovar.id}} > X </button>
+    {% endfor %}
+
+    </ul>
+</form>
+
+     </div>
+    </div>
+
+<script src="{% static 'js/myscript.js' %}"> </script>
+{% endblock %}

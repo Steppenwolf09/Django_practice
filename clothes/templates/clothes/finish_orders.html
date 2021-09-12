@@ -1,0 +1,62 @@
+{% extends 'clothes/base1.html' %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+    <div class="col-lg-3" >
+    <p class="lead">Заказ №</p>
+</div>
+<div class="col-lg-3" >
+    <p class="lead">Заказчик</p>
+</div>
+    <div class="col-lg-3" >
+        <p class="lead">   Почта</p>
+    </div>
+</div>
+    <div class="row">
+         <div class="col-lg-3" >
+        <p class="lead">   {{order.id}}</p>
+    </div>
+        <div class="col-lg-3" >
+    <p class="lead">{{buyer.name}}</p>
+</div>
+    <div class="col-lg-3" >
+        <p class="lead">   {{buyer.email}}</p>
+    </div>
+    </div>
+
+
+
+
+
+
+    <div style="position:absolute; right:20%">
+        <p class="lead">  Сумма: </p>
+
+</div>
+<br>
+
+  <hr class="featurette-divider">
+
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-3"></div>
+     <div class="col-lg-3"></div>
+    <div class="col-lg-3"></div>
+     <div class="col-lg-3">
+         <span><p><font face="cursive" size="8" color="#c5bf72" >{{order.total_cost}} </font> рублей</p> </span>
+         <br>
+
+
+     </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+

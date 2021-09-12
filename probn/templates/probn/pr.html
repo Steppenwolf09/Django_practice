@@ -1,0 +1,17 @@
+{% extends "probn/shablon.html" %}
+ {% load static %}
+  <<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}" type="text/css">
+{% block content %}
+
+<style>
+div {background: url({% static 'probn/photo/{{news2.photo}}.jpg'%})
+</style>
+<div>
+<div class="text-info"> {{news2.title}}</div>
+<div class="text-info"> {{news2.post}}</div>
+<div>
+    <img src="{{news3.photo}}">
+</div>
+</div>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{% extends 'cdu/choice.html' %}
+
+{% block content %}
+
+
+
+<div class="row">
+
+    <div class="col-md-24 order-md-1">
+         <a href="/cdu "  class="btn btn-info btn-lg"><-- Назад </a>
+      <h4 class="mb-3">Уверены, что хотите удалить некого  <p><font size="5" color="red" face="Arial"> {{person.surname}}</font> </p>?</h4>
+      <form class="needs-validation" method="post">
+      {% csrf_token %}
+
+          <button type="submit" class="btn btn-info btn-lg"> Удалить</button>
+      </form>
+    </div>
+</div>
+{% endblock %}

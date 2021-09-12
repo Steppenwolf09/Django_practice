@@ -1,0 +1,63 @@
+{% load static %}
+
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <title>Leba's bricks</title>
+
+      <link rel="stylesheet" href="{% static 'css/reset.css' %}" type="text/css">
+      <link rel="stylesheet" href="{% static 'css/mystyle.css' %}" type="text/css">
+      <link rel="shortcut icon" type="image/png" href="{% static 'photo/favicon.ico' %}">
+
+
+
+
+
+
+  </head>
+
+
+  <body class="reg">
+
+
+<header>
+<div >
+    <img src="{% static 'svg/logo.svg' %}">
+</div>
+
+</header>
+
+
+
+
+          <div class="pos">
+<form action="" method="post" id="formreg">
+    {% csrf_token %}
+{{form}}
+<!--     {% for field in form %}-->
+
+<!--<div></div>-->
+
+<!--                 {% if field.errors%}-->
+<!--            {% for error in field.errors %}-->
+<!--            <div class="alert alert-danger">-->
+<!--                {{error}}</div>-->
+<!--   {% endfor %}-->
+<!--    {% endif %}-->
+
+<!--    {% endfor %}-->
+<!--    <input  id="nameinput" placeholder="Имя">-->
+<!--     <input  id="emailinput"  placeholder="Email">-->
+
+    <button type="submit" id="regbut"> Зарегаться  </button>
+    <a href="/clothes/newmain" ><span id="entrancebut"> Войти </span></a>
+</form>
+</div>
+
+
+</body>
+</html>

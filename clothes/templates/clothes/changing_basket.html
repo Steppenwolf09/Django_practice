@@ -1,0 +1,73 @@
+{% extends 'clothes/base1.html' %}
+
+
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-lg-3" >
+    <p class="lead">Товар</p>
+</div>
+    <div class="col-lg-3" >
+        <p class="lead">   Цена</p>
+    </div>
+    <div class="col-lg-3" >
+        <p class="lead">   Кол-во</p>
+    </div>
+    <div class="col-lg-3" >
+        <p class="lead">  Сумма</p>
+    </div>
+</div>
+
+</div>
+  <hr class="featurette-divider">
+{% for tov in prod_in_basket %}
+<div class="container">
+<div class="row">
+
+
+<div class="col-lg-3" >
+    <a href="{{tov.tovar.id}}">  <p ><div class="name_tov_basket"> {{tov.tovar.name}} </div>  </p></a></div>
+
+     <div class="col-lg-3" >
+      {% if tov.tovar.discount != 0 %}
+         <p><strike>  <font color="red" face="cursive">{{tov.price_per}}</font></strike> </font> <font style ="border: 1px solid red; padding: 10px;">
+             -{{tov.tovar.discount}}%</font><font color="green" face="cursive" size="3">  {{tov.newprice}} рубликов</font></p>
+    {% else %}
+         <font color="green" face="cursive" size="3"><p>{{tov.price_per}} рубликов</p></font>
+         {% endif %} </div>
+<div class="col-lg-3" >
+    <input class="each_tovar_nmb" type="number" value="{{tov.nmb}}" data-price={{tov.price_per}} min="0" style="width:45px">
+</div>
+
+    <div class="col-lg-3">
+         <p><font face="cursive" size="5" color="grey"> <span class="each_tovar_total_price">{{tov.total_price}} </span>рублей</font></p>
+    </div>
+
+      </div>
+</div>
+  <hr class="featurette-divider">
+    {% endfor %}
+
+<div class="container">
+<div class="row">
+    <div class="col-lg-3"></div>
+     <div class="col-lg-3"></div>
+    <div class="col-lg-3"></div>
+     <div class="col-lg-3">
+         <span><p><font face="cursive" size="8" color="#c5bf72" id="total_basket_cost"> 34 </font> рублей</p> </span>
+         <br>
+         <form  id="saving_order_formm"  action="saving_order/">
+             {% csrf_token %}
+         <button type="submit" class="plan-button mybutton" id="saving_orderr" >  Заказать  </button>
+             </form>
+
+     </div>
+</div>
+</div>
+
+
+{% endblock %}
+
+
+
+

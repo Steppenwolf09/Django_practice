@@ -1,0 +1,56 @@
+{%extends "cdu/choice.html" %}
+
+{% block content %}
+
+
+
+<div class="row">
+
+    <div class="col-md-8 order-md-1">
+        <a href="/ "  class="btn btn-info btn-lg"><-- Назад </a>
+      <h4 class="mb-3">Ввод данных</h4>
+      <form class="needs-validation" novalidate>
+
+  <hr class="mb-4">
+
+<a href="{% url 'create' %} "  class="btn btn-info btn-lg">Создать </a>
+ <hr class="mb-4">
+
+
+
+
+
+
+
+               <table border="1" width="100%" cellpadding="5">
+   <tr>
+    <th>#</th>
+    <th>Имя</th>
+       <th>Фамилия</th>
+       <th>Родина</th>
+   </tr>
+    {% for el in data %}
+                   <tr>
+
+    <td>{{el.id}}</td>
+  <td>{{el.name}}</td>
+  <td>{{el.surname}}</td>
+  <td> {{el.country}}</td>
+            <td>           <a href="{% url 'delete' el.id %} " class="btn btn-info btn-lg" >Удалить </a></td>
+                   <td>      <a href="{% url 'update' el.id %} " class="btn btn-info btn-lg">Изменить </a></td>
+   </tr>
+    {% endfor %}
+
+ </table>
+
+
+
+
+
+
+      </form>
+    </div>
+  </div>
+
+
+ {% endblock %}

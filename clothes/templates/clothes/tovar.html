@@ -1,0 +1,64 @@
+{% extends 'clothes/base1.html' %}
+
+{% block content %}
+
+{% load static %}
+{% include 'clothes/basket.html' %}
+<div class="container" style="left:100px; margin-top:30px">
+  <div class="row" >
+        <div class="col-md-6">
+          <div class="card mb-6 shadow-sm">
+            <div class="card-body" >
+{% for im in kir %}
+                <img src="{{im.image.url}}" width="90%" height="60%">
+                <p>{{im.url}}</p>
+{% endfor %}
+
+
+
+
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+
+                <small class="text-muted">Бери, браток</small>
+
+                       </div>
+            </div>
+          </div>
+
+
+
+        </div>
+   </div>
+      <div class="plan" style="width:50%">
+      <form  id="form-buy" action="{% url 'tovar_buy' %}">
+
+{% csrf_token %}
+            <h2 class="plan-title"><font style="color:#F0E68C">{{tov.name}} </font></h2>
+      <h3 class="plan-title">почти даром</h3>
+      <p class="plan-price">{{tov.price}} Руб.<span class="plan-unit"></span></p>
+      <ul class="plan-features" style="width:100%">
+          <li class="plan-feature">Бесплатная<p><span class="plan-feature-name">доставка</span></p></li>
+        <li class="plan-feature">Платная<p><span class="plan-feature-unit">установка</span> </p></li>
+      </ul>
+           <input type="number" class="form-control" id="kol">
+          <br>
+
+
+          <button id="buy-button" class="plan-button mybutton" type="submit" data-id= {{tov.id}} data-name={{tov.name}} data-price={{tov.price}} data-discount={{tov.discount}} >КУПИТЬ</button>
+
+</form>
+          </div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+
+{% endblock %}

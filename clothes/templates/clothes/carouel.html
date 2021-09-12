@@ -1,0 +1,148 @@
+              
+              <!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Подключение Bootstrap 3 к HTML странице</title>
+    <!-- Bootstrap -->
+   {% load static %}
+
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+    <style>
+   .carousel-wrapper{
+position:relative;
+
+/* Абсолютно спозиционированные блоки получают высоту и ширину от родителя.
+Мы сделали их прозрачными по умолчанию, и потом они будут плавно появляться по нажатию на ссылки .arrow-prevи .arrow-next. */
+.carousel-item{
+position:absolute;
+top:0;
+bottom:0;
+left:0;
+right:0;
+padding:25px50px;
+opacity:0;
+transition:all0.5sease-in-out;
+
+/* Заметили padding слева и справа по 50px? Таким способом мы можем позиционировать наши ссылки! Каждая будет по 50px шириной. Кроме того, я использую пустые ссылки с фоновым рисунком таким образом, что ссылки выглядят как стрелки. Проверьте, поменяли ли вы URL ссылок с оригинальным URL, чтобы ваши ссылки не были просто прозрачными прямоугольниками. */
+.arrow{
+position:absolute;
+top:0;
+display:block;
+width:50px;
+height:100%;
+-webkit-tap-highlight-color:rgba(0,0,0,0);
+background:url("/carousel-arrow-dark.png")50%50%/20pxno-repeat;
+
+/* Давайте вернем нашу стрелку налево. */
+&.arrow-prev{
+left:0;
+}
+
+/* А вторую направо. Поскольку я использую одно и то же изображение для стрелки, я поворачиваю его на 180 градусов. */
+&.arrow-next{
+right:0;
+-webkit-transform:rotate(180deg);
+transform:rotate(180deg);
+}
+}
+
+/* Мне очень нравится, как слайды карусели смотрятся на темном фоне, и если блок .carousel-itemимеет класс 'light',
+мы изменим его текст на белый и используем белые стрелки вместо серых. Проверьте еще раз, правильно ли указан путь к изображению стрелки */
+&.light{
+color:white;
+
+.arrow{
+background:url("/carousel-arrow-light.png")50%50%/20pxno-repeat;
+}
+}
+
+/* Напишем медиа-запрос для изменения размера стрелок на устройствах с меньшим размером экрана.*/
+
+@media(max-width:480px){
+.arrow,&.light.arrow{
+background-size:10px;
+background-position:10px50%;
+}
+}
+}
+
+/* Установим целям для ссылок значение display: none; Таким образом, мы избавляемся от постоянного перепрыгивания браузера в самый верх карусели при каждом нажатии на стрелки. Это свойство действует для любых элементов, чей идентификатор начинается на 'target-item'. */
+[id^="target-item"]{
+display:none;
+}
+
+/* Выше мы сделали все наши слайды карусели прозрачными, а это значит, что во время загрузки карусели мы будем получать вместо нее большое пустое поле.
+Изменим значение прозрачности для первого слайда на 1 для отображения. Так же устанавливаем z-index значение 2, позиционируя его выше остальных слайдов. */
+.item-1{
+z-index:2;
+opacity:1;
+}
+
+/* Но нам не нужно, чтобы первый слайд всегда имел значение прозрачностиopacity: 1; в противном случае нам придется пробираться через этот слайд, во время ротации остальных. */
+*:target~.item-1{
+opacity:0;
+}
+
+/* ..но если #target-item-1 в фокусе, и мы хотим показать первый слайд, тогда выбираем его с помощью значка ~ и устанавливаем прозрачность опять в 1:-) */
+#target-item-1:target~.item-1{
+opacity:1;
+}
+
+/* Если другие target-item-# в фокусе, выбираем их используя ~ селектор, плавно показываем, и размещаем их сверху с помощьюz-index: 3.
+Тут вы можете добавить дополнительные spanс идентификатором target-item, если их у вас будет больше трех. Может сразу и добавить 10 штук.. */
+#target-item-2:target~.item-2,#target-item-3:target~.item-3{
+z-index:3;
+opacity:1;
+}
+}
+    </style>
+</head>
+<body>
+
+<div class="carousel-wrapper" style="height: 400px;">
+<!—Карусель использует обычные ссылки для ротации.
+Ссылки используют свойство display: none; тегов span для того, чтобы наша страница не вела себя, как при нажатии на обычную ссылку.-->
+
+<span id="target-item-1"></span>
+<span id="target-item-2"></span>
+<span id="target-item-3"></span>
+
+<!—Тут располагаются слайды карусели.
+У каждого элемента есть класс 'carousel-item', который мы используем для общих стилей, а так же класс item-#, который используется для контроля прозрачности. Прозрачность зависит от того, на каком target-item-# сейчас фокус-->
+<div class="carousel-item item-1">
+<!—Сюда можно добавить любой контент, только убедитесь, что ваш класс .carousel-wrapper имеет достаточную высоту для хранения всего содержимого.-->
+
+<h2>Слайд 1</h2>
+<p>Тут контент.</p>
+
+<!—Тут ссылки для управления каруселью! Убедитесь, что каждый атрибут href ссылается на верный target-item-# так что карусель зацикливается.-->
+
+
+<a class="arrow arrow-prev" href="#target-item-3"></a>
+<a class="arrow arrow-next" href="#target-item-2"></a>
+</div>
+
+<!—Тут еще парочка div’ов. Заметили класс 'light'?
+Royalblue достаточно темный цвет для заднего фона, и если слайд карусели имеет этот класс, мы можем добавить CSS правило, чтобы сделать текст белым,.-->
+
+<div class="carousel-item item-2 light" style="background-color: royalblue;">
+<h2>Слайд 2</h2>
+<p>Контент.</p>
+<a class="arrow arrow-prev" href="#target-item-1"></a>
+<a class="arrow arrow-next" href="#target-item-3"></a>
+</div>
+<div class="carousel-item item-3">
+<h2>Item 3</h2>
+<p>Content goes here.</p>
+<a class="arrow arrow-prev" href="#target-item-2"></a>
+<a class="arrow arrow-next" href="#target-item-1"></a>
+</div>
+</div>
+</body>
+</html>							
+						

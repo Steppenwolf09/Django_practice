@@ -1,0 +1,26 @@
+{%extends "cdu/choice.html" %}
+
+{% block content %}
+
+
+
+<div class="row">
+
+    <div class="col-md-8 order-md-1">
+      <a href="/cdu "  class="btn btn-info btn-lg"><-- Назад </a>
+      <h4 class="mb-3">Ввод данных</h4>
+      <form class="needs-validation"  method="post">
+        {% csrf_token %}
+        {{form.name}}
+        <hr class="mb-4">
+        {{form.surname}}
+        <hr class="mb-4">
+        {{form.country}}
+        <hr class="mb-4">
+
+        <button type="submit" class="btn success"> Добавить</button>
+      </form>
+    </div>
+</div>
+
+{% endblock %}

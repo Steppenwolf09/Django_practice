@@ -1,0 +1,179 @@
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+
+    <title>Магаз</title>
+
+    {% load static %}
+
+    <!-- Bootstrap core CSS -->
+<link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" >
+      <link href="{% static 'css/mystyle.css' %}" rel="stylesheet" >
+      <link rel="shortcut icon" type="image/png" href="{% static 'photo/favicon.ico' %}">
+
+    <!-- Favicons -->
+
+
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+      .round {
+    border-radius: 100px; /* Радиус скругления */
+    border: 3px solid green; /* Параметры рамки */
+    box-shadow: 0 0 7px #666; /* Параметры тени */
+    width: 250px;
+    height: 200px;
+   }
+   .block {
+
+  width: 90%;
+}
+
+.block__inner {
+  width: 100%;
+  padding-top: 100%;
+  background-color: black;
+  position: relative;
+}
+
+.image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/carousel.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <a class="navbar-brand" href="/clothes/newmain"> <img src="{% static 'svg/logo.svg' %}"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/clothes/newmain">Главная </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/weather">Погода</a>
+        </li>
+
+      </ul>
+        <div class="mt-2 mr-4"><a href="user_info" style="color:white" >{{user.name}}</a> </div>
+        <br>
+      <form class="form-inline mt-2 mt-md-0" action="{% url 'search_results' %}" method="get">
+        <input class="form-control mr-sm-2" type="text" placeholder="Search" name="q" aria-label="Search">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+      </form>
+    </div>
+  </nav>
+
+<!--        <div class="basketcont " style="    position: relative;-->
+<!--    top: 70px;">-->
+
+<!--</div>-->
+
+</header>
+
+      <br>
+      <br>
+      <br>
+      <br>
+
+{% include 'clothes/basket.html' %}
+<main role="main">
+
+
+
+
+  <!-- Marketing messaging and featurettes
+  ================================================== -->
+  <!-- Wrap the rest of the page in another container to center all the content. -->
+
+  <div class="container marketing">
+
+    <!-- Three columns of text below the carousel -->
+   <div class="row">
+
+
+
+
+
+{% for tovar in kir %}
+      <div class="col-xs-12 col-md-6 col-lg-4" >
+<div>
+       <a href="{{tovar.product.id}}"> <img src="{{tovar.image.url}}" alt="" class="round"></a>
+          {% if tovar.product.discount != 0 %}
+          <a><font color="red" face="cursive">-{{tovar.product.discount}}% </font></a>{% endif %}
+
+        <h2>{{tovar.product.name}} </h2>
+        <p>{{tovar.product.descrip|truncatechars_html:70}}</p>
+        <p><a class="btn btn-secondary" href="{{tovar.product.id}}" role="button">Подробнее &raquo;</a></p>
+</div>
+      </div><!-- /.col-lg-4 -->
+{% endfor %}
+   </div><!-- /.row -->
+
+
+    <!-- START THE FEATURETTES -->
+{% for t in kamen %}
+    <hr class="featurette-divider">
+
+    <div class="row featurette">
+      <div class="col-md-7 {% cycle ' ' 'order-md-2' %}">
+        <h2 class="featurette-heading">{{t.product.name}} <span class="text-muted">{% cycle 'твердый ' 'Просто пушка' 'Подойдет везде'%}</span></h2>
+        <p class="lead">{{t.product.descrip}}</p>
+        <p><a class="btn btn-secondary" href="{{t.product.id}}" role="button">Подробнее &raquo;</a></p>
+      </div>
+      <div class="col-md-5">
+        <div class="block">
+  <div class="block__inner">
+   <a  href="{{t.product.id}}"> <img src="{{t.image.url}}" class="image"></a>
+  </div>
+</div>
+      </div>
+    </div>
+{% endfor %}
+
+
+
+    <hr class="featurette-divider">
+
+    <!-- /END THE FEATURETTES -->
+
+  </div><!-- /.container -->
+
+
+  <!-- FOOTER -->
+  <footer class="container">
+    <p class="float-right"><a href="newmain">Back to top</a></p>
+    <p>&copy; 2020-2020 LebCompany, Inc. &middot; </p>
+  </footer>
+</main>
+    <script src="{% static 'js/myscript.js' %}"> </script>
+<script src="http://code.jquery.com/jquery-2.1.4.min.js"></script>
+<script src="{% static 'js/myscript.js' %}"> </script>
+  </body>
+</html>

@@ -1,0 +1,68 @@
+{% extends 'clothes/base1.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+<div class="row">
+
+    <div class="col-lg-12 " >
+    <p class="lead" style="color:blue">Информация о пользователе</p>
+</div>
+<div class="col-xs-2 col-md-3 col-lg-4" >
+    <p class="lead">Пользователь:</p>
+</div>
+    <div class="col-xs-10 col-md-9 col-lg-8" >
+    <p class="lead">{{buyer.name}}</p>
+</div>
+   <div class="col-xs-2 col-md-3 col-lg-4" >
+    <p class="lead">Email</p>
+</div>
+    <div class="col-xs-10 col-md-9 col-lg-8" >
+    <p class="lead">{{buyer.email}}</p>
+</div>
+  <div class="col-xs-12 col-md-12 col-lg-12" >
+        <p class="lead" ><font face="segoe script" > Текущие заказы:</font> </p>
+    </div>
+<hr class="featurette-divider">
+
+
+     <div class="col-6 col-md-6 col-lg-6" >
+         <p class="lead"> <font face="cursive" > № </font> </p>
+    </div>
+
+      <div class="col-6 col-md-6 col-lg-6" >
+         <p class="lead"> <font face="cursive" > Сумма </font> </p>
+    </div>
+
+
+{% for ord in orders %}
+     <div class="col-6 col-md-6 col-lg-6" >
+    <p class="lead">  {{ord}}</p>
+    </div>
+{% endfor %}
+
+
+    {% for cost in cost_orders %}
+    <div class="col-6 col-md-6 col-lg-6" >
+    <p class="lead">  {{cost}}</p>
+    </div>
+{% endfor %}
+
+
+
+</div>
+
+</div>
+  <hr class="featurette-divider">
+
+
+
+
+
+{% endblock %}
+
+
+
+
